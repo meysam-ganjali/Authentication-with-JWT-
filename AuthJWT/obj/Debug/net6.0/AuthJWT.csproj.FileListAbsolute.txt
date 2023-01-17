@@ -30,3 +30,10 @@ F:\Lern\Web Appliction\Api\AuthJWT\AuthJWT\obj\Debug\net6.0\refint\AuthJWT.dll
 F:\Lern\Web Appliction\Api\AuthJWT\AuthJWT\obj\Debug\net6.0\AuthJWT.pdb
 F:\Lern\Web Appliction\Api\AuthJWT\AuthJWT\obj\Debug\net6.0\AuthJWT.genruntimeconfig.cache
 F:\Lern\Web Appliction\Api\AuthJWT\AuthJWT\obj\Debug\net6.0\ref\AuthJWT.dll
+F:\Lern\Web Appliction\Api\AuthJWT\AuthJWT\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+F:\Lern\Web Appliction\Api\AuthJWT\AuthJWT\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+F:\Lern\Web Appliction\Api\AuthJWT\AuthJWT\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+F:\Lern\Web Appliction\Api\AuthJWT\AuthJWT\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+F:\Lern\Web Appliction\Api\AuthJWT\AuthJWT\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+F:\Lern\Web Appliction\Api\AuthJWT\AuthJWT\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+F:\Lern\Web Appliction\Api\AuthJWT\AuthJWT\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll

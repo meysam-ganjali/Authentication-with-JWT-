@@ -1,23 +1,28 @@
 using AuthJWT.Config;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
-
+//private readonly IConfiguration configuration;
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 
-builder.Services.AddOurAuthentication();
-builder.Services.AddOurSwagger();
+//configure jwt authentication
+var appSettingsSection = builder.Configuration.GetSection("AppSettings");
+builder.Services.Configure<AppSettings>(appSettingsSection);
 
+var appSettings = appSettingsSection.Get<AppSettings>();
+builder.Services.AddOurAuthentication(appSettings);
+builder.Services.AddOurSwagger();
+// End configure jwt authentication
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+if (app.Environment.IsDevelopment()) {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
