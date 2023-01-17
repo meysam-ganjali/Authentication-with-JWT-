@@ -18,26 +18,17 @@ public class UserService : IUserService {
     {
         new User
         {
-            Id = 1, FirstName = "Meysam", LastName = "Ganjali", Username = "admin", Password = "1234",
+            Id = 1, FirstName = "moein", LastName = "fazeli", Username = "admin", Password = "1234",
             Role = "Admin"
         },
         new User
         {
-            Id = 2, FirstName = "Farahnaz", LastName = "Gholami", Username = "regularUser1", Password = "1234",
+            Id = 2, FirstName = "hassan", LastName = "saeedi", Username = "regularUser", Password = "1234",
             Role = "User"
-        },
-        new User
-        {
-            Id = 2, FirstName = "Ali Ghorban", LastName = "Ganjali", Username = "regularUser2", Password = "1234",
-            Role = "User"
-        },
-        new User
-        {
-            Id = 2, FirstName = "Mahsa", LastName = "Ganjali", Username = "asmin2", Password = "1234",
-            Role = "Admin"
-        },
+        }
     };
     public User Authentication(string userName, string password) {
+       
         var user = _users.FirstOrDefault(x => x.Username == userName && x.Password == password);
 
         // return null if user not found
@@ -70,6 +61,6 @@ public class UserService : IUserService {
     }
 
     public IEnumerable<User> GetAll() {
-        return _users.ToList();
+        return _users;
     }
 }

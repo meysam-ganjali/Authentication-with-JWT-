@@ -1,5 +1,6 @@
 using AuthJWT.Model;
 using AuthJWT.Services.UserService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AuthJWT.Controllers {
@@ -17,7 +18,8 @@ namespace AuthJWT.Controllers {
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] UserLogin loginParam) {
+       
+        public ActionResult Login([FromBody] UserLogin loginParam) {
             var user = _userService.Authentication(loginParam.UserName, loginParam.Password);
             if (user == null)
             {
@@ -28,6 +30,13 @@ namespace AuthJWT.Controllers {
                 _logger.LogInformation($"Login {loginParam.UserName} is Successed");
                 return Ok(user);
             }
+        }
+
+        [HttpGet("getall")]
+        public IActionResult GetAll()
+        {
+            _logger.LogInformation("Create Request Get All User");
+            return Ok(_userService.GetAll());
         }
     }
 }
