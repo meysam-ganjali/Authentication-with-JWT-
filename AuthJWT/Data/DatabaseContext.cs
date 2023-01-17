@@ -20,12 +20,12 @@ public class DatabaseContext:DbContext
         {
             new User
             {
-                Id = 1, FirstName = "moein", LastName = "fazeli", Username = "admin", Password = "1234",
+                Id = 1, FirstName = "meysam", LastName = "ganjali", Username = "admin", Password = "1234",
                 Role = "Admin"
             },
             new User
             {
-                Id = 2, FirstName = "hassan", LastName = "saeedi", Username = "regularUser", Password = "1234",
+                Id = 2, FirstName = "farah naz", LastName = "gholami", Username = "user", Password = "1234",
                 Role = "User"
             }
         });

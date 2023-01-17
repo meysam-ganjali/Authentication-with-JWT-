@@ -34,7 +34,8 @@ public class UserService : IUserService {
         var claims = new ClaimsIdentity();
         claims.AddClaims(new[]
         {
-            new Claim(ClaimTypes.Name, user.Id.ToString())
+            new Claim(ClaimTypes.Name, user.Id.ToString()),
+            new Claim(ClaimTypes.Role,user.Role),
         });
 
         var tokenDescriptor = new SecurityTokenDescriptor {

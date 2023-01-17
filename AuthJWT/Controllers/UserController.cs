@@ -19,8 +19,8 @@ namespace AuthJWT.Controllers {
 
         [HttpPost("login")]
        
-        public ActionResult Login([FromBody] UserLogin loginParam) {
-            var user = _userService.Authentication(loginParam.UserName, loginParam.Password);
+        public async Task<IActionResult> Login([FromBody] UserLogin loginParam) {
+            var user =await  _userService.Authentication(loginParam.UserName, loginParam.Password);
             if (user == null)
             {
                 _logger.LogError($"User {loginParam.UserName} Not Found");
@@ -31,7 +31,7 @@ namespace AuthJWT.Controllers {
                 return Ok(user);
             }
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpGet("getall")]
         public async Task<IActionResult> GetAll()
         {
