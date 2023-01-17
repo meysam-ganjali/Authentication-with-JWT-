@@ -2,7 +2,9 @@
 using System.Security.Claims;
 using System.Text;
 using AuthJWT.Config;
+using AuthJWT.Data;
 using AuthJWT.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
@@ -10,26 +12,16 @@ namespace AuthJWT.Services.UserService;
 
 public class UserService : IUserService {
     private readonly AppSettings _appSettings;
-
-    public UserService(IOptions<AppSettings> appSettings) {
+    private readonly DatabaseContext _db;
+    public UserService(IOptions<AppSettings> appSettings,DatabaseContext db) {
         _appSettings = appSettings.Value;
+        _db = db;
     }
-    private readonly List<User> _users = new List<User>
+
+    public async Task<User> Authentication(string userName, string password)
     {
-        new User
-        {
-            Id = 1, FirstName = "moein", LastName = "fazeli", Username = "admin", Password = "1234",
-            Role = "Admin"
-        },
-        new User
-        {
-            Id = 2, FirstName = "hassan", LastName = "saeedi", Username = "regularUser", Password = "1234",
-            Role = "User"
-        }
-    };
-    public User Authentication(string userName, string password) {
-       
-        var user = _users.FirstOrDefault(x => x.Username == userName && x.Password == password);
+
+        var user = await _db.Users.FirstOrDefaultAsync(x => x.Username.Equals(userName) && x.Password.Equals(password));
 
         // return null if user not found
         if (user == null) {
@@ -53,14 +45,14 @@ public class UserService : IUserService {
         };
         var token = tokenHandler.CreateToken(tokenDescriptor);
         user.Token = tokenHandler.WriteToken(token);
-
+        await _db.SaveChangesAsync();
         // remove password before returning
         user.Password = null;
 
         return user;
     }
 
-    public IEnumerable<User> GetAll() {
-        return _users;
+    public async Task<IEnumerable<User>> GetAll() {
+        return await _db.Users.ToListAsync();
     }
 }

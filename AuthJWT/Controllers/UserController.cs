@@ -33,10 +33,10 @@ namespace AuthJWT.Controllers {
         }
 
         [HttpGet("getall")]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
             _logger.LogInformation("Create Request Get All User");
-            return Ok(_userService.GetAll());
+            return Ok(await _userService.GetAll());
         }
     }
 }

@@ -1,5 +1,7 @@
 using AuthJWT.Config;
+using AuthJWT.Data;
 using AuthJWT.Services.UserService;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
@@ -12,6 +14,8 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 
+builder.Services.AddDbContext<DatabaseContext>(o =>
+    o.UseSqlServer(builder.Configuration.GetConnectionString("ContextConnection")));
 //configure jwt authentication
 var appSettingsSection = builder.Configuration.GetSection("AppSettings");
 builder.Services.Configure<AppSettings>(appSettingsSection);
