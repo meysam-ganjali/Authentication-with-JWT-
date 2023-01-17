@@ -1,4 +1,5 @@
 using AuthJWT.Config;
+using AuthJWT.Services.UserService;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
@@ -18,6 +19,7 @@ builder.Services.Configure<AppSettings>(appSettingsSection);
 var appSettings = appSettingsSection.Get<AppSettings>();
 builder.Services.AddOurAuthentication(appSettings);
 builder.Services.AddOurSwagger();
+builder.Services.AddScoped<IUserService, UserService>();
 // End configure jwt authentication
 var app = builder.Build();
 
